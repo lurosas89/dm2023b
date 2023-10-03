@@ -21,12 +21,15 @@ PARAM$experimento <- "FE6310"
 
 PARAM$exp_input <- "DR6210"
 
+#Puedo jugar con estos parametros? todo false, encendiendo de a uno y midiendo
+#la ausencia de lags, el aumento progresivo de 1, 1y2, 1, 2 y 3, Sumar 4to? 5to? obtendre mejores ganancias?  
 PARAM$lag1 <- TRUE
 PARAM$lag2 <- TRUE
 PARAM$lag3 <- FALSE
 
+# Consultar las ventanas y que implica activar cada linea? 
 PARAM$Tendencias1$run <- TRUE
-PARAM$Tendencias1$ventana <- 6
+PARAM$Tendencias1$ventana <- 6 # no entiendo esta linea.
 PARAM$Tendencias1$tendencia <- TRUE
 PARAM$Tendencias1$minimo <- FALSE
 PARAM$Tendencias1$maximo <- FALSE
@@ -35,7 +38,7 @@ PARAM$Tendencias1$ratioavg <- FALSE
 PARAM$Tendencias1$ratiomax <- FALSE
 
 PARAM$Tendencias2$run <- FALSE
-PARAM$Tendencias2$ventana <- 6
+PARAM$Tendencias2$ventana <- 6 # no entiendo esta linea.
 PARAM$Tendencias2$tendencia <- TRUE
 PARAM$Tendencias2$minimo <- FALSE
 PARAM$Tendencias2$maximo <- FALSE
@@ -43,7 +46,7 @@ PARAM$Tendencias2$promedio <- FALSE
 PARAM$Tendencias2$ratioavg <- FALSE
 PARAM$Tendencias2$ratiomax <- FALSE
 
-
+# como puedo jugar con estos parametros? 
 PARAM$RandomForest$run <- TRUE
 PARAM$RandomForest$num.trees <- 20
 PARAM$RandomForest$max.depth <- 4
@@ -51,7 +54,7 @@ PARAM$RandomForest$min.node.size <- 1000
 PARAM$RandomForest$mtry <- 40
 PARAM$RandomForest$semilla <- 102191 # cambiar por la propia semilla
 
-
+## como puedo jugar con estos parametros? 
 # varia de 0.0 a 2.0, si es 0.0 NO se activan
 PARAM$CanaritosAsesinos$ratio <- 0.0
 # desvios estandar de la media, para el cutoff
@@ -84,6 +87,9 @@ GrabarOutput <- function() {
 # para la maxíma velocidad esta funcion esta escrita en lenguaje C,
 # y no en la porqueria de R o Python
 
+
+
+#REVISAR ESTE APARTADO!!!
 cppFunction("NumericVector fhistC(NumericVector pcolumna, IntegerVector pdesde )
 {
   /* Aqui se cargan los valores para la regresion */
