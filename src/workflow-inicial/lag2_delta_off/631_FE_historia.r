@@ -23,7 +23,7 @@ PARAM$exp_input <- "DR6210"
 
 PARAM$lag1 <- TRUE
 PARAM$lag2 <- TRUE
-PARAM$lag10 <- TRUE
+PARAM$lag10 <- FALSE
 
 PARAM$Tendencias1$run <- TRUE
 PARAM$Tendencias1$ventana <- 6
@@ -59,7 +59,7 @@ PARAM$CanaritosAsesinos$desvios <- 4.0
 # cambiar por la propia semilla
 PARAM$CanaritosAsesinos$semilla <- 101111
 
-PARAM$home <- "~/buckets/b2/"
+PARAM$home <- "~/buckets/b3/"
 # FIN Parametros del script
 
 OUTPUT <- list()
@@ -491,10 +491,10 @@ if (PARAM$lag1) {
   ]
 
   # agrego los delta lags de orden 1
-  for (vcol in cols_lagueables)
-  {
-    dataset[, paste0(vcol, "_delta1") := get(vcol) - get(paste0(vcol, "_lag1"))]
-  }
+ # for (vcol in cols_lagueables)
+  #{
+   # dataset[, paste0(vcol, "_delta1") := get(vcol) - get(paste0(vcol, "_lag1"))]
+  #}
 
   OUTPUT$lag1$ncol_despues <- ncol(dataset)
   GrabarOutput()
@@ -511,10 +511,10 @@ if (PARAM$lag2) {
   ]
 
   # agrego los delta lags de orden 2
-  for (vcol in cols_lagueables)
-  {
-    dataset[, paste0(vcol, "_delta2") := get(vcol) - get(paste0(vcol, "_lag2"))]
-  }
+  #for (vcol in cols_lagueables)
+  #{
+  #  dataset[, paste0(vcol, "_delta2") := get(vcol) - get(paste0(vcol, "_lag2"))]
+  #}
 
   OUTPUT$lag2$ncol_despues <- ncol(dataset)
   GrabarOutput()
@@ -523,7 +523,7 @@ if (PARAM$lag2) {
 
 cols_lagueables <- intersect(cols_lagueables, colnames(dataset))
 if (PARAM$lag10) {
-  # creo los campos lags de orden 10
+  # creo los campos lags de orden 3
   OUTPUT$lag10$ncol_antes <- ncol(dataset)
   dataset[, paste0(cols_lagueables, "_lag10") := shift(.SD, 3, NA, "lag"),
     by = numero_de_cliente,
@@ -531,10 +531,10 @@ if (PARAM$lag10) {
   ]
 
   # agrego los delta lags de orden 3
-  for (vcol in cols_lagueables)
-  {
-    dataset[, paste0(vcol, "_delta10") := get(vcol) - get(paste0(vcol, "_lag10"))]
-  }
+ # for (vcol in cols_lagueables)
+  #{
+   # dataset[, paste0(vcol, "_delta10") := get(vcol) - get(paste0(vcol, "_lag10"))]
+  #}
 
   OUTPUT$lag10$ncol_despues <- ncol(dataset)
   GrabarOutput()
