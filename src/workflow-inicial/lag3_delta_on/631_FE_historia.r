@@ -17,9 +17,9 @@ require("lightgbm")
 
 # Parametros del script
 PARAM <- list()
-PARAM$experimento <- "FE6310"
+PARAM$experimento <- "FE6310-lag3-delta-on"
 
-PARAM$exp_input <- "DR6210"
+PARAM$exp_input <- "DR6210-lag3-delta-on"
 
 PARAM$lag1 <- TRUE
 PARAM$lag2 <- TRUE
@@ -59,7 +59,7 @@ PARAM$CanaritosAsesinos$desvios <- 4.0
 # cambiar por la propia semilla
 PARAM$CanaritosAsesinos$semilla <- 101111
 
-PARAM$home <- "~/buckets/b4/"
+PARAM$home <- "~/buckets/b1/"
 # FIN Parametros del script
 
 OUTPUT <- list()
