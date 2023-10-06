@@ -491,10 +491,10 @@ if (PARAM$lag1) {
   ]
 
   # agrego los delta lags de orden 1
-  for (vcol in cols_lagueables)
-  {
-    dataset[, paste0(vcol, "_delta1") := get(vcol) - get(paste0(vcol, "_lag1"))]
-  }
+  #for (vcol in cols_lagueables)
+ # {
+ #   dataset[, paste0(vcol, "_delta1") := get(vcol) - get(paste0(vcol, "_lag1"))]
+ # }
 
   OUTPUT$lag1$ncol_despues <- ncol(dataset)
   GrabarOutput()
@@ -511,10 +511,10 @@ if (PARAM$lag2) {
   ]
 
   # agrego los delta lags de orden 2
-  for (vcol in cols_lagueables)
-  {
-    dataset[, paste0(vcol, "_delta2") := get(vcol) - get(paste0(vcol, "_lag2"))]
-  }
+  #for (vcol in cols_lagueables)
+  #{
+  #  dataset[, paste0(vcol, "_delta2") := get(vcol) - get(paste0(vcol, "_lag2"))]
+  #}
 
   OUTPUT$lag2$ncol_despues <- ncol(dataset)
   GrabarOutput()
@@ -531,10 +531,10 @@ if (PARAM$lag10) {
   ]
 
   # agrego los delta lags de orden 3
-  for (vcol in cols_lagueables)
-  {
-    dataset[, paste0(vcol, "_delta10") := get(vcol) - get(paste0(vcol, "_lag10"))]
-  }
+  #for (vcol in cols_lagueables)
+  #{
+   # dataset[, paste0(vcol, "_delta10") := get(vcol) - get(paste0(vcol, "_lag10"))]
+  #}
 
   OUTPUT$lag10$ncol_despues <- ncol(dataset)
   GrabarOutput()
