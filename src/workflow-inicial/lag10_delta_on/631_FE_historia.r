@@ -525,7 +525,7 @@ cols_lagueables <- intersect(cols_lagueables, colnames(dataset))
 if (PARAM$lag10) {
   # creo los campos lags de orden 10
   OUTPUT$lag10$ncol_antes <- ncol(dataset)
-  dataset[, paste0(cols_lagueables, "_lag10") := shift(.SD, 3, NA, "lag"),
+  dataset[, paste0(cols_lagueables, "lag10") := shift(.SD, 3, NA, "lag"),
     by = numero_de_cliente,
     .SDcols = cols_lagueables
   ]
@@ -533,7 +533,7 @@ if (PARAM$lag10) {
   # agrego los delta lags de orden 3
   for (vcol in cols_lagueables)
   {
-    dataset[, paste0(vcol, "_delta10") := get(vcol) - get(paste0(vcol, "_lag10"))]
+    dataset[, paste0(vcol, "delta10") := get(vcol) - get(paste0(vcol, "lag10"))]
   }
 
   OUTPUT$lag10$ncol_despues <- ncol(dataset)
