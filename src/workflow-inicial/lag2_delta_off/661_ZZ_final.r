@@ -35,8 +35,8 @@ require("lightgbm")
 
 # Parametros del script
 PARAM <- list()
-PARAM$experimento <- "ZZ6910-delta-off"
-PARAM$exp_input <- "HT6510-delta-off"
+PARAM$experimento <- "ZZ6910-lag2-delta-off"
+PARAM$exp_input <- "HT6510-lag2-delta-off"
 
 # Atencion, que cada modelos se procesa con 5 semillas, ajuste a SUS necesidades
 # Que modelos quiero, segun su posicion en el ranking e la Bayesian Optimizacion, ordenado por ganancia descendente
