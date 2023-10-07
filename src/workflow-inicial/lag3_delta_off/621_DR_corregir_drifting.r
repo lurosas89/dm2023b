@@ -11,7 +11,7 @@ require("yaml")
 
 # Parametros del script
 PARAM <- list()
-PARAM$experimento <- "DR6210-lag3-delta-of"
+PARAM$experimento <- "DR6210-lag3-delta-off"
 
 PARAM$exp_input <- "CA6110-lag3-delta-off"
 
