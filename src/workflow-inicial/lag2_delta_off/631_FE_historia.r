@@ -23,7 +23,7 @@ PARAM$exp_input <- "DR6210-lag2-delta-off"
 
 PARAM$lag1 <- TRUE
 PARAM$lag2 <- TRUE
-PARAM$lag10 <- FALSE
+PARAM$lag3 <- FALSE
 
 PARAM$Tendencias1$run <- TRUE
 PARAM$Tendencias1$ventana <- 6
