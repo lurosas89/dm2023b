@@ -17,9 +17,9 @@ require("lightgbm")
 
 # Parametros del script
 PARAM <- list()
-PARAM$experimento <- "FE6310"
+PARAM$experimento <- "FE6310-delta-off"
 
-PARAM$exp_input <- "DR6210"
+PARAM$exp_input <- "DR6210-delta-off"
 
 PARAM$lag1 <- TRUE
 PARAM$lag2 <- TRUE
@@ -59,7 +59,7 @@ PARAM$CanaritosAsesinos$desvios <- 4.0
 # cambiar por la propia semilla
 PARAM$CanaritosAsesinos$semilla <- 101111
 
-PARAM$home <- "~/buckets/b3/"
+PARAM$home <- "~/buckets/b1/"
 # FIN Parametros del script
 
 OUTPUT <- list()
@@ -485,7 +485,7 @@ setorder(dataset, numero_de_cliente, foto_mes)
 if (PARAM$lag1) {
   # creo los campos lags de orden 1
   OUTPUT$lag1$ncol_antes <- ncol(dataset)
-  dataset[, paste0(cols_lagueables, "_lag1") := shift(.SD, 1, NA, "lag"),
+  dataset[, paste0(cols_lagueables, "lag1") := shift(.SD, 1, NA, "lag"),
     by = numero_de_cliente,
     .SDcols = cols_lagueables
   ]
@@ -505,7 +505,7 @@ cols_lagueables <- intersect(cols_lagueables, colnames(dataset))
 if (PARAM$lag2) {
   # creo los campos lags de orden 2
   OUTPUT$lag2$ncol_antes <- ncol(dataset)
-  dataset[, paste0(cols_lagueables, "_lag2") := shift(.SD, 2, NA, "lag"),
+  dataset[, paste0(cols_lagueables, "lag2") := shift(.SD, 2, NA, "lag"),
     by = numero_de_cliente,
     .SDcols = cols_lagueables
   ]
@@ -522,10 +522,10 @@ if (PARAM$lag2) {
 
 
 cols_lagueables <- intersect(cols_lagueables, colnames(dataset))
-if (PARAM$lag10) {
+if (PARAM$lag3) {
   # creo los campos lags de orden 3
-  OUTPUT$lag10$ncol_antes <- ncol(dataset)
-  dataset[, paste0(cols_lagueables, "_lag10") := shift(.SD, 3, NA, "lag"),
+  OUTPUT$lag3$ncol_antes <- ncol(dataset)
+  dataset[, paste0(cols_lagueables, "lag3") := shift(.SD, 3, NA, "lag"),
     by = numero_de_cliente,
     .SDcols = cols_lagueables
   ]
@@ -533,7 +533,7 @@ if (PARAM$lag10) {
   # agrego los delta lags de orden 3
  # for (vcol in cols_lagueables)
   #{
-   # dataset[, paste0(vcol, "_delta10") := get(vcol) - get(paste0(vcol, "_lag10"))]
+   # dataset[, paste0(vcol, "_delta3") := get(vcol) - get(paste0(vcol, "_lag3"))]
   #}
 
   OUTPUT$lag10$ncol_despues <- ncol(dataset)

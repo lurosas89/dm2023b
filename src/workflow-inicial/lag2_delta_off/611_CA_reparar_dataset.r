@@ -10,13 +10,13 @@ require("yaml")
 
 # Parametros del script
 PARAM <- list()
-PARAM$experimento <- "CA6110"
+PARAM$experimento <- "CA6110-delta-off"
 PARAM$dataset <- "./datasets/competencia_2023.csv.gz"
 
 # valores posibles
 #  "MachineLearning"  "EstadisticaClasica" "Ninguno"
 PARAM$metodo <- "MachineLearning"
-PARAM$home <- "~/buckets/b3/"
+PARAM$home <- "~/buckets/b1/"
 
 # FIN Parametros del script
 

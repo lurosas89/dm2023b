@@ -11,9 +11,9 @@ require("yaml")
 
 # Parametros del script
 PARAM <- list()
-PARAM$experimento <- "TS6410"
+PARAM$experimento <- "TS6410-delta-off"
 
-PARAM$exp_input <- "FE6310"
+PARAM$exp_input <- "FE6310-delta-off"
 
 # me salteo los meses duros de pandemia, pero llego hasta 201907 en training
 # entreno en 18 meses
@@ -40,7 +40,7 @@ PARAM$train$undersampling <- 0.1
 
 PARAM$train$semilla <- 101111 # cambiar por su propia semilla  !!!
 
-PARAM$home <- "~/buckets/b3/"
+PARAM$home <- "~/buckets/b1/"
 # FIN Parametros del script
 
 
