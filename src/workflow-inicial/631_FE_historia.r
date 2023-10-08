@@ -17,13 +17,13 @@ require("lightgbm")
 
 # Parametros del script
 PARAM <- list()
-PARAM$experimento <- "FE6310-lag3-delta-on"
+PARAM$experimento <- "FE6310"
 
-PARAM$exp_input <- "DR6210-lag3-delta-on"
+PARAM$exp_input <- "DR6210"
 
 PARAM$lag1 <- TRUE
 PARAM$lag2 <- TRUE
-PARAM$lag3 <- TRUE
+PARAM$lag3 <- FALSE
 
 PARAM$Tendencias1$run <- TRUE
 PARAM$Tendencias1$ventana <- 6
@@ -49,7 +49,7 @@ PARAM$RandomForest$num.trees <- 20
 PARAM$RandomForest$max.depth <- 4
 PARAM$RandomForest$min.node.size <- 1000
 PARAM$RandomForest$mtry <- 40
-PARAM$RandomForest$semilla <- 101111 # cambiar por la propia semilla
+PARAM$RandomForest$semilla <- 10111 # cambiar por la propia semilla
 
 
 # varia de 0.0 a 2.0, si es 0.0 NO se activan
@@ -57,7 +57,7 @@ PARAM$CanaritosAsesinos$ratio <- 0.0
 # desvios estandar de la media, para el cutoff
 PARAM$CanaritosAsesinos$desvios <- 4.0
 # cambiar por la propia semilla
-PARAM$CanaritosAsesinos$semilla <- 101111
+PARAM$CanaritosAsesinos$semilla <- 10111
 
 PARAM$home <- "~/buckets/b1/"
 # FIN Parametros del script
@@ -485,7 +485,7 @@ setorder(dataset, numero_de_cliente, foto_mes)
 if (PARAM$lag1) {
   # creo los campos lags de orden 1
   OUTPUT$lag1$ncol_antes <- ncol(dataset)
-  dataset[, paste0(cols_lagueables, "lag1") := shift(.SD, 1, NA, "lag"),
+  dataset[, paste0(cols_lagueables, "_lag1") := shift(.SD, 1, NA, "lag"),
     by = numero_de_cliente,
     .SDcols = cols_lagueables
   ]
@@ -493,7 +493,7 @@ if (PARAM$lag1) {
   # agrego los delta lags de orden 1
   for (vcol in cols_lagueables)
   {
-    dataset[, paste0(vcol, "delta1") := get(vcol) - get(paste0(vcol, "lag1"))]
+    dataset[, paste0(vcol, "_delta1") := get(vcol) - get(paste0(vcol, "_lag1"))]
   }
 
   OUTPUT$lag1$ncol_despues <- ncol(dataset)
@@ -505,7 +505,7 @@ cols_lagueables <- intersect(cols_lagueables, colnames(dataset))
 if (PARAM$lag2) {
   # creo los campos lags de orden 2
   OUTPUT$lag2$ncol_antes <- ncol(dataset)
-  dataset[, paste0(cols_lagueables, "lag2") := shift(.SD, 2, NA, "lag"),
+  dataset[, paste0(cols_lagueables, "_lag2") := shift(.SD, 2, NA, "lag"),
     by = numero_de_cliente,
     .SDcols = cols_lagueables
   ]
@@ -513,7 +513,7 @@ if (PARAM$lag2) {
   # agrego los delta lags de orden 2
   for (vcol in cols_lagueables)
   {
-    dataset[, paste0(vcol, "delta2") := get(vcol) - get(paste0(vcol, "lag2"))]
+    dataset[, paste0(vcol, "_delta2") := get(vcol) - get(paste0(vcol, "_lag2"))]
   }
 
   OUTPUT$lag2$ncol_despues <- ncol(dataset)
@@ -525,7 +525,7 @@ cols_lagueables <- intersect(cols_lagueables, colnames(dataset))
 if (PARAM$lag3) {
   # creo los campos lags de orden 3
   OUTPUT$lag3$ncol_antes <- ncol(dataset)
-  dataset[, paste0(cols_lagueables, "lag3") := shift(.SD, 3, NA, "lag"),
+  dataset[, paste0(cols_lagueables, "_lag3") := shift(.SD, 3, NA, "lag"),
     by = numero_de_cliente,
     .SDcols = cols_lagueables
   ]
@@ -533,7 +533,7 @@ if (PARAM$lag3) {
   # agrego los delta lags de orden 3
   for (vcol in cols_lagueables)
   {
-    dataset[, paste0(vcol, "delta3") := get(vcol) - get(paste0(vcol, "lag3"))]
+    dataset[, paste0(vcol, "_delta3") := get(vcol) - get(paste0(vcol, "_lag3"))]
   }
 
   OUTPUT$lag3$ncol_despues <- ncol(dataset)
